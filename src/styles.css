@@ -1,0 +1,26 @@
+#autocomplete {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#autocomplete > * {
+    box-sizing: border-box;
+}
+
+.autocomplete-input {
+    width: 100%;
+    border: 2px solid blue;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.autocomplete-suggestion-container {
+    border: 2px solid blue;
+    border-radius: 4px;
+}
+
+.autocomplete-suggestion {
+    font-size: 18px;
+    padding: 5px;
+}
