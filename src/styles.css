@@ -8,19 +8,19 @@
     box-sizing: border-box;
 }
 
-.autocomplete-input {
+.ac-input {
     width: 100%;
     border: 2px solid blue;
     border-radius: 4px;
     padding: 10px;
 }
 
-.autocomplete-suggestion-container {
+.ac-suggestion-container {
     border: 2px solid blue;
     border-radius: 4px;
 }
 
-.autocomplete-suggestion {
+.ac-suggestion {
     font-size: 18px;
     padding: 5px;
 }

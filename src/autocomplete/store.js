@@ -1,4 +1,4 @@
-export const createStore = reducer => {
+const createStore = reducer => {
     let state = {};
     const listeners = [];
 
@@ -21,3 +21,5 @@ export const createStore = reducer => {
         update,
     };
 };
+
+export default createStore;

@@ -1,4 +1,4 @@
-export const reducer = (state = {}, action) => {
+const reducer = (state = {}, action) => {
     switch (action.type) {
         case 'INIT_AUTOCOMPLETE': {
             return {
@@ -34,3 +34,5 @@ export const updateInput = (id, input) => ({
     type: 'UPDATE_INPUT',
     payload: { id, input },
 });
+
+export default reducer;

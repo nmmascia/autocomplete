@@ -10,23 +10,19 @@ start([
             {
                 name: 'Thrice',
                 genre: 'Rock',
-                random: 'hayyy',
             },
             {
                 name: 'Kanye West',
                 genre: 'Rap',
-                random: 'ughhh',
             },
             {
                 name: 'Sia',
                 genre: 'Pop',
-                random: 'wutt',
             },
         ],
         filterKeys: [
             'name',
             'genre',
-            'random'
         ],
-    }
+    },
 ]);

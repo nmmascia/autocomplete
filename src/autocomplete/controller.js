@@ -1,5 +1,3 @@
-import Mustache from 'mustache';
-
 import { updateInput } from './reducer';
 
 const filterByKeysAndInput = (input, values, keys) => {
@@ -8,18 +6,13 @@ const filterByKeysAndInput = (input, values, keys) => {
     return values
     .filter(value => {
         return keys.some(key => value[key].toLowerCase().startsWith(input.toLowerCase()));
-    })
+    });
 };
 
-export const createController = (root, id, dispatch) => {
-    const input = document.createElement('input');
-    input.classList = 'autocomplete-input';
-
-    const container = document.createElement('div');
-    container.classList = 'autocomplete-anchor';
-
-    root.appendChild(input);
-    root.appendChild(container);
+const createController = (root, id, dispatch, renderer) => {
+    root.innerHTML = renderer.initialize(id);
+    const input = document.getElementById(`ac-${id}-input`);
+    const container = document.getElementById(`ac-${id}-container`);
 
     input.addEventListener('keyup', event => {
         dispatch(updateInput(id, event.target.value));
@@ -29,29 +22,21 @@ export const createController = (root, id, dispatch) => {
         const { input, values, filterKeys } = state[id];
 
         if (input === '') {
-            return container.innerHTML = '';
+            return container.innerHTML = renderer.blankState();
         }
 
         const filteredValues = filterByKeysAndInput(input, values, filterKeys);
 
         if (filteredValues.length === 0) {
-            return container.innerHTML = '<div>There are no results</div>';
+            return container.innerHTML = renderer.noResults();
         }
 
-        container.innerHTML = Mustache.render(
-            `<div class="autocomplete-suggestion-container">
-                {{#values}}
-                    <div class="autocomplete-suggestion">
-                        <span>{{name}}</span>
-                        <span>{{genre}}</span>
-                    </div>
-                {{/values}}
-            </div>`,
-            { values: filteredValues },
-        );
+        return container.innerHTML = renderer.results(filteredValues);
     };
 
     return {
         render,
     };
 };
+
+export default createController;
