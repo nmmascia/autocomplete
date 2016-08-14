@@ -19,6 +19,18 @@ const reducer = (state = {}, action) => {
                 },
             };
         }
+        case 'SET_VALUES': {
+            return {
+                ...state,
+                [action.payload.id]: {
+                    ...state[action.payload.id],
+                    values: [
+                        ...state[action.payload.id].values,
+                        ...action.payload.values,
+                    ],
+                },
+            };
+        }
         default: {
             return state;
         }
@@ -33,6 +45,11 @@ export const initAutocomplete = (id, values, filterKeys) => ({
 export const updateInput = (id, input) => ({
     type: 'UPDATE_INPUT',
     payload: { id, input },
+});
+
+export const setValues = (id, values) => ({
+    type: 'SET_VALUES',
+    payload: { id, values },
 });
 
 export default reducer;

@@ -1,5 +1,5 @@
 import createStore from './store';
-import reducer, { initAutocomplete } from './reducer';
+import reducer, { initAutocomplete, setValues } from './reducer';
 import createController from './controller';
 import createRenderer from './renderer';
 
@@ -11,5 +11,10 @@ export const start = data => {
         const controller = createController(d.root, d.id, store.dispatch, renderer);
         store.subscribe(controller.render);
         store.dispatch(initAutocomplete(d.id, d.values, d.filterKeys));
+
+        d.asyncValues.forEach(fetch => {
+            fetch()
+            .then(values => store.dispatch(setValues(d.id, values)));
+        });
     });
 };

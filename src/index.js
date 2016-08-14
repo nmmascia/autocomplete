@@ -24,5 +24,23 @@ start([
             'name',
             'genre',
         ],
+        asyncValues: [
+            () => {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve([
+                            {
+                                name: 'Passion Pit',
+                                genre: 'Pop',
+                            },
+                            {
+                                name: 'Kiiara',
+                                genre: 'Electronic',
+                            },
+                        ]);
+                    }, 2000)
+                });
+            },
+        ],
     },
 ]);
